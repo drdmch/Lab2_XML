@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="lab2XML.MainPage"
+	BackgroundColor="#4B0011">
+	<ScrollView>
+		<StackLayout Padding="20">
+			<Label Text="Select Parsing Method:" FontAttributes="Bold" FontSize="Medium"/>
+			<RadioButton Content="LINQ to XML" x:Name="Linq" IsChecked="true" GroupName="methods"/>
+			<RadioButton Content="DOM" x:Name="Dom" GroupName="methods"/>
+			<RadioButton Content="SAX" x:Name="Sax" GroupName="methods"/>
+			<Entry Placeholder="Enter Name" x:Name="Name" />
+			<Entry Placeholder="Enter Faculty" x:Name="Faculty" />
+			<Entry Placeholder="Grade AVG higher than" x:Name="Grade" Keyboard="Numeric"/>
+			<Entry Placeholder="Enter Department" x:Name="Department" />
+			<Entry Placeholder="Enter File Name (without extension)" x:Name="FileNameEntry" />
+
+			<Button Clicked="Load_XML_File" Text="Load XML File" />
+			<Button Clicked="Load_XSL_File" Text="Load XSL File" />
+			<Button Clicked="Search_Submit" Text="Search" />
+			<Button Clicked="Clear_Fields" Text="Clear Fields" />
+			<Grid RowDefinitions="Auto,Auto">
+				<CollectionView x:Name="MyCollectionViews" ItemsSource="{Binding StudentItems}">
+					<CollectionView.ItemsLayout>
+						<GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+					</CollectionView.ItemsLayout>
+					<CollectionView.ItemTemplate>
+						<DataTemplate>
+							<VerticalStackLayout Padding="10" BackgroundColor="#EEEEEE" Margin="5">
+								<Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold"/>
+								<Label Text="{Binding Faculty}" TextColor="Black"/>
+								<Label Text="{Binding Department}" TextColor="Black"/>
+								<Label Text="{Binding Disceplines}" TextColor="Black"/>
+								<Label Text="{Binding AVGGrade}" TextColor="Black"/>
+							</VerticalStackLayout>
+						</DataTemplate>
+					</CollectionView.ItemTemplate>
+				</CollectionView>
+			</Grid>
+			<Button Clicked="Export_HTML" Text="Export HTML" />
+		</StackLayout>
+	</ScrollView>
+</ContentPage>
