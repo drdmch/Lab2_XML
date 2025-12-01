@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -27,7 +27,7 @@
 					</CollectionView.ItemsLayout>
 					<CollectionView.ItemTemplate>
 						<DataTemplate>
-							<VerticalStackLayout Padding="10" BackgroundColor="#EEEEEE" Margin="5">
+							<VerticalStackLayout Padding="10" VerticalOptions="Center" HeightRequest="150" BackgroundColor="#EEEEEE" Margin="5">
 								<Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold"/>
 								<Label Text="{Binding Faculty}" TextColor="Black"/>
 								<Label Text="{Binding Department}" TextColor="Black"/>
