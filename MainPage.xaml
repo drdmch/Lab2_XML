@@ -10,12 +10,15 @@
 			<RadioButton Content="LINQ to XML" x:Name="Linq" IsChecked="true" GroupName="methods"/>
 			<RadioButton Content="DOM" x:Name="Dom" GroupName="methods"/>
 			<RadioButton Content="SAX" x:Name="Sax" GroupName="methods"/>
+            <CheckBox x:Name="NameCheckBox" />
 			<Entry Placeholder="Enter Name" x:Name="Name" />
+            <CheckBox x:Name="FacultyCheckBox" />
 			<Entry Placeholder="Enter Faculty" x:Name="Faculty" />
+            <CheckBox x:Name="GradeCheckBox" />
 			<Entry Placeholder="Grade AVG higher than" x:Name="Grade" Keyboard="Numeric"/>
+            <CheckBox x:Name="DepartmentCheckBox" />
 			<Entry Placeholder="Enter Department" x:Name="Department" />
 			<Entry Placeholder="Enter File Name (without extension)" x:Name="FileNameEntry" />
-
 			<Button Clicked="Load_XML_File" Text="Load XML File" />
 			<Button Clicked="Load_XSL_File" Text="Load XSL File" />
 			<Button Clicked="Search_Submit" Text="Search" />
