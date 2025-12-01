@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Xml;
 using System.Xml.Xsl;
 using System.Collections.Generic;
@@ -114,10 +114,10 @@ public partial class MainPage : ContentPage
 
         var searchCriteria = new MainPageViewModel.StudentItem
         {
-            Name = Name.Text ?? "",
-            Faculty = Faculty.Text ?? "",
-            Department = Department.Text ?? "",
-            AVGGrade = double.TryParse(Grade.Text, out double grade) ? grade : 0,
+            Name = (NameCheckBox.IsChecked ? Name.Text ?? "" : ""),
+            Faculty = (FacultyCheckBox.IsChecked ? Faculty.Text ?? "" : ""),
+            Department = (DepartmentCheckBox.IsChecked ? Department.Text ?? "" : ""),
+            AVGGrade = (double.TryParse(Grade.Text, out double grade) && GradeCheckBox.IsChecked) ? grade : 0,
             Disceplines = ""
         };
 
