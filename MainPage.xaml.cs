@@ -1,10 +1,12 @@
-using System;
-using System.Xml;
-using System.Xml.Xsl;
-using System.Collections.Generic;
 using Microsoft.Maui.Storage;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Xsl;
 
 namespace lab2XML;
 
@@ -20,6 +22,7 @@ public partial class MainPage : ContentPage
         InitializeComponent();
         BindingContext = mainPageViewModel = new MainPageViewModel();
         dataHandlers = new XMLDataHandlers();
+        mainPageViewModel.FacultiesList = new ObservableCollection<string>();
     }
 
     public async void Load_XML_File(object sender, EventArgs e)
@@ -45,6 +48,7 @@ public partial class MainPage : ContentPage
             if (result != null)
             {
                 dataHandlers.XmlFilePath = result.FullPath;
+                await ProcessFacultiesForPicker(result.FullPath);
                 await DisplayAlert("Success", "XML file loaded successfully.", "OK");
             }
         }
@@ -85,6 +89,23 @@ public partial class MainPage : ContentPage
             await DisplayAlert("Error", $"Failed to load XSL file: {ex.Message}", "OK");
         }
     }
+    private async Task ProcessFacultiesForPicker(string filePath)
+    {
+        var doc = System.Xml.Linq.XDocument.Load(filePath);
+
+        var faculties = doc.Descendants("student")
+                            .Select(el => el.Element("faculty")?.Value)
+                            .Where(f => !string.IsNullOrEmpty(f))
+                            .Distinct()
+                            .OrderBy(f => f);
+
+        mainPageViewModel.FacultiesList.Clear();
+        foreach (var faculty in faculties)
+        {
+            mainPageViewModel.FacultiesList.Add(faculty);
+        }
+        Debug.WriteLine($"\nКількість елементів у ViewModel списку: {mainPageViewModel.FacultiesList.Count}\n");
+    }
 
     public void Search_Submit(object sender, EventArgs e)
     {
@@ -115,7 +136,7 @@ public partial class MainPage : ContentPage
         var searchCriteria = new MainPageViewModel.StudentItem
         {
             Name = (NameCheckBox.IsChecked ? Name.Text ?? "" : ""),
-            Faculty = (FacultyCheckBox.IsChecked ? Faculty.Text ?? "" : ""),
+            Faculty = (FacultyCheckBox.IsChecked ? Faculty.Text ?? "" : (FacultyPicker.SelectedItem != null ? FacultyPicker.SelectedItem.ToString() : "")),
             Department = (DepartmentCheckBox.IsChecked ? Department.Text ?? "" : ""),
             AVGGrade = (double.TryParse(Grade.Text, out double grade) && GradeCheckBox.IsChecked) ? grade : 0,
             Disceplines = ""

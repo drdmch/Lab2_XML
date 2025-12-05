@@ -13,7 +13,9 @@
             <CheckBox x:Name="NameCheckBox" />
 			<Entry Placeholder="Enter Name" x:Name="Name" />
             <CheckBox x:Name="FacultyCheckBox" />
-			<Entry Placeholder="Enter Faculty" x:Name="Faculty" />
+            <Entry Placeholder="Enter Faculty" x:Name="Faculty" />
+            <Picker x:Name="FacultyPicker" Title="Choose a Faculty" 
+                    ItemsSource="{Binding FacultiesList}"/>
             <CheckBox x:Name="GradeCheckBox" />
 			<Entry Placeholder="Grade AVG higher than" x:Name="Grade" Keyboard="Numeric"/>
             <CheckBox x:Name="DepartmentCheckBox" />
@@ -25,10 +27,10 @@
 			<Button Clicked="Clear_Fields" Text="Clear Fields" />
 			<Grid RowDefinitions="Auto,Auto">
 				<CollectionView x:Name="MyCollectionViews" ItemsSource="{Binding StudentItems}">
-					<CollectionView.ItemsLayout>
-						<GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
-					</CollectionView.ItemsLayout>
-					<CollectionView.ItemTemplate>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
 						<DataTemplate>
 							<VerticalStackLayout Padding="10" VerticalOptions="Center" HeightRequest="150" BackgroundColor="#EEEEEE" Margin="5">
 								<Label Text="{Binding Name}" TextColor="Black" FontAttributes="Bold"/>

@@ -20,6 +20,20 @@ public class MainPageViewModel : BindableObject
     }
 
     private ObservableCollection<StudentItem> studentItems;
+
+    private ObservableCollection<string> _facultiesList;
+    public ObservableCollection<string> FacultiesList
+    {
+        get => _facultiesList;
+        set
+        {
+            if (_facultiesList != value)
+            {
+                _facultiesList = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     public ObservableCollection<StudentItem> StudentItems
     {
         get => studentItems;
