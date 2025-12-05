@@ -2,7 +2,7 @@
 <students>
     <student>
         <name>John Doe</name>
-        <faculty>FCSC</faculty>
+        <faculty>FIT</faculty>
         <department>Department 1</department>
         <courses>
             <course>
@@ -70,7 +70,7 @@
     </student>
     <student>
         <name>Emma Johnson</name>
-        <faculty>FCSC</faculty>
+        <faculty>FIT</faculty>
         <department>Department 3</department>
         <courses>
             <course>
